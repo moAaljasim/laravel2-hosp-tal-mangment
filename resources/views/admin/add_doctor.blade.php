@@ -33,23 +33,64 @@
     @include('admin.nav')
         <!-- partial -->
         <div class="container-fluid page-body-wrapper ">
-         <div class="container pt-40 border h-96" align="center">
-            <form action="">
+         
+          <!-- <div class="alert alert-sucess">
+            <button type="button" class="close" date-dismiss="alert">x</button>
+            {{session()->get('message')}}
+          </div> -->
+          <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{session()->get('message')}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div> -->
+       
+          
+            
+         <div class="container pt-40 " align="center" >
+         @if(session()->has('message'))
+         <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                       </button>
+            {{session()->get('message')}}
+          </div> 
+            @endif 
+            <form action="{{url('upload_doctor')}} "method="POST" enctype="multipart/form-data">
                 
-                
+            @csrf
                 <div >
                     <label for="" class="mr-5 mb-3">doctor Name</label>
-                    <input type="text" placeholder="add new doc..." name="doctor Name">
-                    <label for=""></label>
-                </div>
-                <div >
-                    <label for="" class="mr-5 mb-3">room number</label>
-                    <input type="text" placeholder="add new doc..." name="room number">
-                    <label for=""></label>
-                </div>
-                <div >
-                    <label for="" class="mr-3 mb-3 ">phone number</label>
                     <input type="text" placeholder="add new doc..." name="name">
+                 
+                </div>
+                <div >
+                    <label for="" class="mr-5 mb-3">phone number</label>
+                    <input type="text" placeholder="add new doc..." name=" number">
+            
+                </div>
+                <div >
+                    <label for="" class="mr-3 mb-3 ">Room number</label>
+                    <input type="text" placeholder="add new doc..." name="room">
+                  
+                </div>
+               <div  class="mr-3 mb-3 ">
+               <label for="" class="mr-3 mb-3 w-28">speciality </label>
+               <select name="speciality" style="color:black ;  width:200px ">
+                   <option >-select-</option>
+                   <option value="skin">skin</option>
+                   <option value="heart">heart</option>
+                   <option value="nose">nose</option>
+                </select>
+               </div>
+                
+                <div >
+                    <label for="" class="mr-3 mb-3 w-28 ">doctor img</label>
+                    <input type="file"  name="file">
+                  
+                </div>
+                <div >
+                    <input type="submit"  class="btn btn-success">
                   
                 </div>
             </form>
