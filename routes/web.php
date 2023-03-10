@@ -19,6 +19,9 @@ use App\Http\Controllers\AdminController;
 Route::get('/', [HomeController::class,'index']);
 
 Route::get('/home', [HomeController::class,'redirect']);
+Route::post('/appointment', [HomeController::class,'makeappointment']);
+Route::get('/myappointment', [HomeController::class,'getmyappointment']);
+Route::get('/cancelAppointment/{id}', [HomeController::class,'cancel_appointment']);
 
 Route::middleware([
     'auth:sanctum',
