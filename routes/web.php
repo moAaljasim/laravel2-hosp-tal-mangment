@@ -19,7 +19,7 @@ use App\Http\Controllers\AdminController;
 Route::get('/', [HomeController::class,'index']);
 
 Route::get('/home', [HomeController::class,'redirect']);
-Route::post('/appointment', [HomeController::class,'makeappointment']);
+Route::post('/appointment', [HomeController::class,'makeappointment'])->middleware('auth','verified');
 Route::get('/myappointment', [HomeController::class,'getmyappointment']);
 Route::get('/cancelAppointment/{id}', [HomeController::class,'cancel_appointment']);
 
@@ -35,3 +35,10 @@ Route::middleware([
 
 Route::get('/add_doctor_view', [AdminController::class,'addview']);
 Route::POST('/upload_doctor', [AdminController::class,'upload']);
+Route::get('/doctor_appointments', [AdminController::class,'getDoctorAppointments']);
+Route::get('/aprove/{id}', [AdminController::class,'approveAppointment']);
+Route::get('/cancel/{id}', [AdminController::class,'cancelAppointment']);
+Route::get('/allDoctor', [AdminController::class,'showallDoctor']);
+Route::get('/delete/{id}', [AdminController::class,'deleteDoctor']);
+Route::get('/update/{id}', [AdminController::class,'updateDoctor']);
+Route::post('/editdoctor/{id}', [AdminController::class,'editdoctor']);
